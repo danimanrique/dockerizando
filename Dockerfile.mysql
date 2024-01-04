@@ -1,0 +1,11 @@
+# Use the official MySQL image as base
+FROM mysql:latest
+
+# Set the environment variables
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=mydatabase
+ENV MYSQL_USER=myuser
+ENV MYSQL_PASSWORD=mypassword
+
+# Copy the database initialization script
+COPY init.sql /docker-entrypoint-initdb.d/

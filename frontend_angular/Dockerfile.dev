@@ -1,0 +1,23 @@
+# Use the official Node.js image as base
+FROM node:20
+
+# Set the working directory
+WORKDIR /frontend
+
+# Install Angular CLI globally
+RUN npm install -g @angular/cli
+
+# Copy package.json and package-lock.json
+COPY ./frontend_angular/package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application
+COPY ./frontend_angular/* .
+
+# Expose port 4200 for the Angular development server
+EXPOSE 4200
+
+# Start the Angular development server
+CMD ["ng", "serve"]

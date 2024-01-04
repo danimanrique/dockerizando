@@ -1,0 +1,23 @@
+# Use the official Node.js image as base
+FROM node:18
+
+# Set the working directory
+WORKDIR /backend
+
+# Install Nest CLI globally
+RUN npm install -g @nestjs/cli
+
+# Copy package.json and package-lock.json
+COPY ./backend_nest/package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application
+COPY ./backend_nest/* .
+
+# Expose port 3000 for the Nest.js application
+EXPOSE 3000
+
+# Start the Nest.js application with nodemon
+CMD ["nest", "start", "--watch"]
